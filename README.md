@@ -7,6 +7,10 @@ Guía de backend desde cero para **Desarrollo de Software 2026 (UTN-FRT)**: POO,
 - 282 preguntas de repaso, cuestionario por módulo, simulacro y repaso de las preguntas falladas.
 - Los ejercicios EJ01 a EJ16 con pistas y solución verificada con .NET 10.
 
-Sitio: https://franco704.github.io/backeando-ando/
+Sitio en GitHub Pages: [franco704.github.io/backeando-ando](https://franco704.github.io/backeando-ando/)
 
 No necesita instalación: es HTML, CSS y JavaScript. Para usarlo sin internet, descargá el repositorio y abrí `index.html`. El progreso se guarda en el navegador de cada persona.
+
+## Agradecimientos
+
+A **Mateo Rusconi**, autor original de las animaciones de esta guía: la pantalla de entrada a cada módulo, los glifos animados de las lecciones y los microefectos de los cuestionarios vienen de su "Laboratorio Frontend DSW" y están adaptados acá a la identidad de Backeando Ando.

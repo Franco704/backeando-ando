@@ -136,9 +136,13 @@
   // ---------- Rutas ----------
   const currentId = () => decodeURIComponent(location.hash.replace(/^#\/?/, ''));
 
-  function route() {
+  let firstLoad = true;
+  async function route() {
     const id = currentId();
     const idx = LESSONS.findIndex((l) => l.id === id);
+    // Pantalla de entrada al cambiar de módulo; si mientras tanto cambió el hash, gana la ruta nueva
+    if (idx !== -1) { await ANIM.intro(id, firstLoad); if (currentId() !== id) return; }
+    firstLoad = false;
     rail.innerHTML = '';
     document.body.dataset.view = 'page';
     if (idx !== -1) renderLesson(idx);
@@ -293,6 +297,7 @@
 
     main.innerHTML = `
       <article class="lesson">
+        <div class="lesson-glyph" aria-hidden="true">${ANIM.glyph(mod.id)}</div>
         <p class="crumb"><a href="#/${lessonsOf(mod.id)[0].id}">${mod.title}</a>, lección ${idx + 1} de ${LESSONS.length}</p>
         <h1>${l.title}</h1>
         <p class="tldr">${l.tldr}</p>
@@ -426,10 +431,11 @@
       const pct = Math.round((ok / qs.length) * 100);
       e.currentTarget.remove();
       left.remove();
+      const C = 2 * Math.PI * 52;   // circunferencia del anillo
       const rows = Object.entries(byMod).map(([m, r]) => `<li><span>${modOf(m).title}</span><span>${r.ok} de ${r.n}</span></li>`).join('');
       $('.exam-result', el).innerHTML = `
         <div class="score ${pct >= 60 ? 'pass' : 'fail'}">
-          <p class="score-n">${pct}%</p>
+          <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="${pct}% de respuestas correctas"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" style="--c:${C};stroke-dasharray:${C};stroke-dashoffset:${C * (1 - pct / 100)}"/><text x="60" y="69">${pct}%</text></svg>
           <p>${ok} de ${qs.length} correctas. ${pct >= 80 ? 'Muy bien: este tema está firme.' : pct >= 60 ? 'Aprobado, pero repasá las que fallaste.' : 'Todavía no: volvé a las lecciones marcadas y repetí.'}</p>
           ${Object.keys(byMod).length > 1 ? `<ul class="score-mods">${rows}</ul>` : ''}
           <p><a class="btn" href="#/${currentId()}" data-act="again">Hacer otro intento</a></p>
