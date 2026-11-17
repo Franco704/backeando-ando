@@ -669,3 +669,7 @@ pre.code, .lab-out, .table-wrap, .term-out, .git-panel, .linq-src { scrollbar-wi
 .also-repo { padding: 7px 16px 10px; font: 600 .8rem var(--mono); color: var(--accent-ink); text-decoration: none; border-top: 1px dashed var(--line); }
 .also-repo:hover { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .also li:hover { transform: none; } }
+
+/* Otras guías agrupadas por año de la carrera */
+.also-y { font-size: .95rem; font-weight: 700; margin: 18px 0 8px; opacity: .75; }
+.also-h + .also-y { margin-top: 4px; }
