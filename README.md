@@ -4,12 +4,32 @@ Guía de backend desde cero para **Desarrollo de Software 2026 (UTN-FRT)**: POO,
 
 - 48 lecciones con teoría desarrollada a partir de la bibliografía de la cátedra.
 - 62 laboratorios interactivos (terminal Git simulada, cliente REST, JWT, LINQ, async, EF Core…).
-- 282 preguntas de repaso, cuestionario por módulo, simulacro y repaso de las preguntas falladas.
+- 282 preguntas de repaso, cuestionario por módulo, simulacro, repaso de las preguntas falladas y una página con todos los laboratorios.
 - Los ejercicios EJ01 a EJ16 con pistas y solución verificada con .NET 10.
 
-Sitio en GitHub Pages: [franco704.github.io/backeando-ando](https://franco704.github.io/backeando-ando/)
+Sitio en GitHub Pages: [franco704.github.io/backeando-ando](https:/No necesita instalación ni compilación: es HTML, CSS y JavaScript con módulos ES. Como los navegadores no cargan módulos desde `file://`, para usarlo sin internet descargá el repositorio, levantá un servidor estático en la carpeta (por ejemplo `python3 -m http.server`) y abrí `http://localhost:8000`. El progreso se guarda en el navegador de cada persona (claves `ba-*`, las mismas de siempre).
 
-No necesita instalación: es HTML, CSS y JavaScript. Para usarlo sin internet, descargá el repositorio y abrí `index.html`. El progreso se guarda en el navegador de cada persona.
+Pruebas: `npm test` (carga todo el temario y valida lecciones, laboratorios y preguntas; además prueba la terminal Git simulada, la API del EJ15 y el resaltado de código).
+
+## Cómo está organizado
+
+La estructura cuenta de qué trata la materia (arquitectura *screaming*):
+
+```
+index.html              armazón: barra, índice, dock inferior en móvil
+src/main.js             raíz de composición: rutas por hash (#/<lección>, #/quiz/<módulo>, #/simulacro, #/repaso, #/laboratorios) y vistas
+src/temario/            lecciones por unidad (introduccion/, lenguaje-csharp/, desarrollo-backend/; un archivo por módulo), catálogo, ayudantes de redacción e índice
+src/laboratorios/       terminal Git simulada, cliente REST y JWT (http), C# y .NET, EF Core y calidad (datos), genéricos e índice que los monta
+src/estudio/            progreso, preguntas y otras guías
+src/vistas/             inicio, lección, cuestionarios (módulo, simulacro, repaso) y laboratorios juntos
+src/animaciones/        pantalla de entrada a cada módulo y glifo de cada lección
+src/ui/ src/nucleo/     armazón, resaltado de código e íconos; DOM, almacenamiento y rutas
+styles/                 tokens, base, armazón, contenido, estudio, laboratorios, vistas y animaciones
+```
+
+El diseño es *mobile-first*: en el celular todo se alcanza desde el dock inferior (Inicio, Índice, Labs, Simulacro, Repasar) y el cajón, con el buscador, las herramientas y el índice completo; desde 1024 px el índice queda fijo y las herramientas pasan a la barra superior, y desde 1280 px aparece el riel con las secciones de la lección. La portada abre con un pedido HTTP real contra la API simulada del EJ15, capa por capa. Tipografía: Funnel Display para títulos, Atkinson Hyperlegible Next para leer y JetBrains Mono para el código, que va en bloques oscuros en los dos temas.
+
+arda en el navegador de cada persona.
 
 ## También probá
 

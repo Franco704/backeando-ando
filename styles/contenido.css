@@ -1,0 +1,136 @@
+/* Contenido de las lecciones: texto, código con resaltado, tablas, notas, definiciones y figuras; después, ejercicios, bibliografía y navegación. */
+/* ---------- Lección ---------- */
+.lesson { max-width: 46rem; margin: 0 auto; }
+.crumb { font: 500 .88rem var(--f-ui); color: var(--tenue); margin: 0 0 10px; }
+.crumb a { color: inherit; }
+.lesson h1, .home h1 { font-family: var(--f-titulo); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 2.75rem); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 16px; text-wrap: balance; }
+.lesson h2 { font-family: var(--f-titulo); font-weight: 700; font-size: 1.6rem; line-height: 1.25; letter-spacing: -.012em; margin: 2.6em 0 .6em; text-wrap: balance; }
+.lesson h3 { font-family: var(--f-ui); font-weight: 700; font-size: 1.12rem; line-height: 1.35; margin: 1.9em 0 .5em; }
+.lesson h4 { font-family: var(--f-ui); font-weight: 600; font-size: 1rem; margin: 1.5em 0 .4em; }
+.lesson p, .lesson li { max-width: 68ch; }
+.lesson p { margin: 0 0 1em; }
+.lesson ul, .lesson ol { padding-left: 1.3em; margin: 0 0 1.1em; }
+.lesson li { margin: .3em 0; }
+.lesson li::marker { color: var(--tenue); }
+.tldr { font-size: 1.2rem; line-height: 1.6; color: var(--tinta-2); margin: 0 0 24px; }
+.tldr mark, .body mark { background: none; color: inherit; font-weight: 600; box-shadow: inset 0 -.42em 0 var(--acento-suave); }
+.goals { font-family: var(--f-ui); border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); padding: 14px 0 6px; margin: 0 0 8px; }
+.goals p { font-weight: 700; font-size: .92rem; margin: 0 0 6px; }
+.goals ul { margin: 0 0 8px; padding-left: 1.2em; font-size: .97rem; line-height: 1.55; }
+.body > :first-child { margin-top: 1.6em; }
+:not(pre) > code { font: 500 .86em var(--f-mono); background: var(--codigo-fondo); color: var(--codigo-tinta); padding: .12em .36em; border-radius: 5px; overflow-wrap: anywhere; }
+strong { font-weight: 700; }
+
+/* Código */
+pre.code {
+  position: relative; margin: 0 0 1.4em; padding: 16px 18px; overflow-x: auto;
+  background: var(--codigo-fondo); color: var(--codigo-tinta); border: 1px solid var(--linea); border-radius: var(--r-2);
+  font: 400 .84rem/1.65 var(--f-mono); tab-size: 4; -webkit-text-size-adjust: none;
+}
+pre.code code { font: inherit; }
+.file-name { font: 600 .8rem var(--f-mono); color: var(--tenue); margin: 0 0 6px !important; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px; font: 600 .74rem var(--f-ui); color: var(--tenue); background: var(--superficie);
+  border: 1px solid var(--linea); border-radius: 6px; padding: 4px 8px; cursor: pointer; opacity: 0; transition: opacity .15s;
+}
+pre.code:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+@media (hover: none) { .copy-btn { opacity: 1; } }
+.tok-c { color: var(--tok-c); font-style: italic; }
+.tok-s { color: var(--tok-s); }
+.tok-k { color: var(--tok-k); font-weight: 600; }
+.tok-t { color: var(--tok-t); }
+.tok-n { color: var(--tok-n); }
+.tok-a { color: var(--tok-a); }
+
+/* Tablas */
+.table-wrap { overflow-x: auto; margin: 0 0 1.5em; border: 1px solid var(--linea); border-radius: var(--r-2); background: var(--superficie); }
+table { border-collapse: collapse; width: 100%; font: 400 .93rem/1.5 var(--f-ui); }
+th, td { text-align: left; padding: 10px 14px; vertical-align: top; border-bottom: 1px solid var(--linea); }
+th { font-weight: 700; background: var(--superficie-2); color: var(--tinta); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td code { font-size: .82em; }
+
+/* Notas */
+.note { font-family: var(--f-ui); font-size: .97rem; line-height: 1.6; margin: 0 0 1.5em; padding: 14px 18px; border-radius: var(--r-2); background: var(--superficie); border: 1px solid var(--linea); border-left: 3px solid var(--tenue); }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.note.tip { border-left-color: var(--ok); }
+.note.warn { border-left-color: var(--aviso); background: var(--aviso-suave); border-color: transparent; border-left-color: var(--aviso); }
+.note.exam { border-left-color: var(--acento); background: var(--acento-suave); border-color: transparent; border-left-color: var(--acento); }
+.note.exam::before { content: 'Para el parcial'; display: block; font-weight: 700; color: var(--acento-tinta); font-size: .85rem; margin-bottom: 4px; }
+
+/* Definición de la bibliografía */
+.def { margin: 1.6em 0; padding: 0 0 0 20px; border-left: 2px solid var(--acento); }
+.def figcaption { font: 700 .9rem var(--f-ui); color: var(--acento-tinta); margin-bottom: 4px; }
+.def blockquote { margin: 0; }
+.def blockquote p { font-size: 1.13rem; line-height: 1.6; font-style: italic; color: var(--tinta); margin: 0; }
+.def-src { font: 400 .84rem var(--f-ui); color: var(--tenue); margin: 6px 0 0 !important; }
+
+/* Figuras y diagramas */
+.fig { margin: 1.6em 0; padding: 18px; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--r-2); overflow-x: auto; }
+.fig > figcaption { font: 400 .86rem/1.5 var(--f-ui); color: var(--tenue); margin-top: 12px; }
+.fig svg { display: block; margin: 0 auto; height: auto; font-family: var(--f-ui); }
+.fig svg text { fill: var(--tinta); }
+.fig svg .muted { fill: var(--tenue); }
+.fig svg .box { fill: var(--superficie-2); stroke: var(--linea); }
+.fig svg .box-a { fill: var(--acento-suave); stroke: var(--acento); }
+.fig svg .stroke { stroke: var(--tenue); fill: none; }
+.fig svg .stroke-a { stroke: var(--acento); fill: none; }
+.fig svg .fill-a { fill: var(--acento); }
+
+/* Pasos en secuencia */
+.flow { list-style: none; padding: 0 !important; margin: 0 0 1.5em !important; display: flex; flex-wrap: wrap; gap: 8px 0; font: 500 .88rem/1.35 var(--f-ui); counter-reset: f; }
+.flow li { counter-increment: f; display: flex; align-items: center; margin: 0; max-width: none; }
+.flow li::before { content: counter(f); display: inline-grid; place-items: center; width: 20px; height: 20px; margin-right: 7px; border-radius: 50%; background: var(--acento); color: var(--sobre-acento); font-size: .72rem; font-weight: 700; flex: none; }
+:root[data-theme="dark"] .flow li::before { color: #14121f; }
+.flow li:not(:last-child)::after { content: ''; width: 22px; height: 1px; background: var(--tenue); margin: 0 10px; }
+
+/* ---------- Secciones finales ---------- */
+.sec-lede { font: 400 .97rem var(--f-ui); color: var(--tenue); }
+.done-row { margin: 56px 0 18px; display: flex; gap: 12px; align-items: center; }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: var(--f-ui); }
+.pager a { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border: 1px solid var(--linea); border-radius: var(--r-2); background: var(--superficie); text-decoration: none; color: var(--tinta); }
+.pager a:hover { border-color: var(--acento); }
+.pager small { color: var(--tenue); font-size: .8rem; }
+.pager strong { font-weight: 600; font-size: .97rem; line-height: 1.35; }
+.pager .next { text-align: right; grid-column: 2; }
+
+/* Ejercicios */
+.exercise { margin: 0 0 20px; padding: 20px 22px; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--r-2); }
+.exercise.official { border-left: 3px solid var(--acento); }
+.ex-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font: 600 .8rem var(--f-ui); }
+.ex-tag { color: var(--acento-tinta); }
+.ex-level { color: var(--tenue); padding: 2px 8px; border: 1px solid var(--linea); border-radius: 99px; font-weight: 500; }
+.exercise h3 { margin: 8px 0 10px !important; }
+.ex-prompt { font-size: 1rem; }
+.ex-prompt > :last-child { margin-bottom: 0; }
+details.hint, details.solution { margin-top: 14px; font-family: var(--f-ui); }
+details.hint > summary, details.solution > summary { cursor: pointer; font-weight: 600; font-size: .93rem; color: var(--acento-tinta); width: fit-content; }
+details.hint ul { margin: 8px 0 0; font-size: .95rem; }
+.sol-body { margin-top: 12px; padding-top: 14px; border-top: 1px dashed var(--linea); }
+.sol-explain { font-family: var(--f-texto); }
+.sol-file { margin-top: 12px; }
+
+/* Bibliografía */
+.source { border: 1px solid var(--linea); border-radius: var(--r-2); background: var(--superficie); margin-bottom: 10px; font-family: var(--f-ui); }
+.source > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; font-weight: 600; font-size: .95rem; }
+.source > summary::-webkit-details-marker { display: none; }
+.source .host { color: var(--tenue); font-weight: 400; font-size: .84rem; text-align: right; }
+.source-body { padding: 0 16px 12px; font-size: .94rem; line-height: 1.55; }
+.source-body ul { padding-left: 1.2em; }
+
+@media (max-width: 720px) { pre.code { font-size: .8rem; padding: 14px; } }
+/* ---------- Cabecera de la lección: parcial, unidad, título y glifo ---------- */
+.lesson-head { display: grid; grid-template-columns: minmax(0, 1fr); }
+.lesson-head .crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.chip-parcial { display: inline-block; padding: 2px 10px; border-radius: 99px; font: 600 .76rem/1.6 var(--f-ui); background: var(--acento); color: var(--sobre-acento); }
+.lesson-pos { margin: 0 0 var(--e-5); font: 500 .86rem var(--f-ui); color: var(--tenue); }
+.lesson-head .lesson-glyph { display: none; }
+@media (min-width: 720px) {
+  .lesson-head { grid-template-columns: minmax(0, 1fr) 150px; column-gap: var(--e-5); }
+  .lesson-head .crumb, .lesson-head h1, .lesson-pos { grid-column: 1; }
+  .lesson-head .lesson-glyph { display: block; grid-column: 2; grid-row: 1 / span 3; float: none; margin: 0; align-self: center; }
+}
+
+/* El código en bloque es oscuro, como una terminal; el código en el texto queda claro para no cortar la lectura */
+:not(pre) > code { background: var(--superficie-2); color: var(--tinta); }
+pre.code { border-color: transparent; }

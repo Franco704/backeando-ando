@@ -1,0 +1,89 @@
+/* Vistas: portada (un pedido HTTP capa por capa), unidades con sus módulos y laboratorios. */
+.inicio { max-width: 72rem; margin: 0 auto; }
+
+/* ---------- Hero: del primer objeto al 200 OK ---------- */
+.hero { display: grid; gap: var(--e-6); padding-bottom: var(--e-6); }
+.hero-materia { margin: 0; font: 600 .92rem var(--f-ui); color: var(--tenue); }
+.hero h1 { max-width: 11ch; margin: .2em 0 .35em; font: 800 var(--t-5)/.9 var(--f-titulo); letter-spacing: -.035em; text-wrap: balance; }
+.lede { max-width: 56ch; margin: 0 0 var(--e-5); font-size: 1.08rem; line-height: 1.6; color: var(--tinta-2); }
+.hero-acciones { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-acciones .btn { flex: 1 1 auto; }
+.flojo { max-width: 56ch; margin: var(--e-4) 0 0; padding: 10px 14px; background: var(--aviso-suave); border-left: 3px solid var(--aviso); font-size: .95rem; }
+
+/* Un pedido HTTP real: el pedido, las capas que atraviesa y la respuesta, como en una terminal */
+.pedido { margin: 0; padding: var(--e-4); display: grid; gap: var(--e-3); min-width: 0; background: var(--codigo-fondo); color: var(--codigo-tinta); border-radius: var(--r-3); box-shadow: var(--sombra); }
+.pedido .toggle { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.pedido .toggle button { min-height: 40px; padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .2); border-radius: 99px; background: transparent; color: var(--codigo-tinta); font: 600 .88rem var(--f-ui); cursor: pointer; }
+.pedido .toggle button:hover { border-color: rgba(255, 255, 255, .45); }
+.pedido .toggle button[aria-pressed='true'] { background: var(--acento); border-color: var(--acento); color: var(--sobre-acento); }
+.pedido-linea { margin: 0; font: 500 1rem var(--f-mono); overflow-wrap: anywhere; }
+.pedido-linea b { color: var(--tok-k); }
+.pedido-capas { list-style: none; margin: 0; padding: 0 0 0 14px; border-left: 2px solid rgba(255, 255, 255, .16); display: grid; gap: 3px; font: 400 .82rem/1.45 var(--f-mono); color: var(--tok-c); }
+.pedido-capas li { position: relative; overflow-wrap: anywhere; }
+.pedido-capas li::before { content: ''; position: absolute; left: -19px; top: .55em; width: 8px; height: 8px; border-radius: 50%; background: var(--codigo-fondo); border: 2px solid var(--tok-c); }
+.pedido-capas li:last-child { color: var(--codigo-tinta); }
+.pedido-respuesta { margin: 0; }
+.pedido-estado { display: inline-block; padding: 3px 10px; border-radius: 99px; font: 700 .95rem var(--f-mono); background: rgba(255, 255, 255, .08); }
+.pedido-estado.ok { color: #5ee6a0; } .pedido-estado.warn { color: #ffc266; } .pedido-estado.err { color: #ff8a8a; }
+.pedido-cuerpo { margin: 0; max-height: 15rem; overflow: auto; font: 400 .82rem/1.55 var(--f-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.pedido figcaption { font: 400 .88rem/1.55 var(--f-texto); color: var(--codigo-tinta); opacity: .82; }
+.pedido figcaption a { color: inherit; }
+@media (prefers-reduced-motion: no-preference) { .pedido-capas li { animation: capa .3s ease both; } .pedido-capas li:nth-child(n) { animation-delay: calc(var(--n, 0) * 60ms); } }
+@keyframes capa { from { opacity: 0; transform: translateX(-4px); } }
+@media (min-width: 560px) { .hero-acciones .btn { flex: 0 1 auto; } .pedido { padding: var(--e-5); } }
+@media (min-width: 1100px) { .hero { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: var(--e-7); padding-top: var(--e-4); } }
+
+/* ---------- Parciales y sus unidades ---------- */
+.parcial { margin-top: var(--e-7); }
+.parcial-cabeza { display: grid; gap: 8px; margin-bottom: var(--e-2); padding-top: var(--e-4); border-top: 3px solid var(--acento); }
+.parcial-cabeza h2 { display: grid; gap: 4px; margin: 0; font: 800 var(--t-3)/1 var(--f-titulo); letter-spacing: -.02em; color: var(--acento); }
+.parcial-cabeza h2 span { font: 400 1rem/1.4 var(--f-texto); letter-spacing: 0; color: var(--tinta-2); }
+.parcial-cabeza p { margin: 0; max-width: 62ch; font-size: .92rem; color: var(--tenue); }
+.parcial-cabeza .btn { justify-self: start; }
+@media (min-width: 768px) {
+  .parcial-cabeza { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--e-5); }
+  .parcial-cabeza .btn { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+}
+.mods { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--e-6); }
+@media (min-width: 900px) { .mods { grid-template-columns: 1fr 1fr; } }
+.mod { display: grid; gap: 4px; height: 100%; padding: 14px 2px 16px; border-bottom: 1px solid var(--linea); color: var(--tinta); text-decoration: none; }
+.mod:hover .mod-tit { color: var(--acento); }
+.mod.pendiente { color: var(--tenue); }
+.mod-tag { font: 500 .82rem var(--f-ui); color: var(--tenue); }
+.mod-tit { font: 700 1.1rem/1.3 var(--f-titulo); }
+.mod-blurb { font-size: .9rem; line-height: 1.5; color: var(--tenue); }
+.mod-estado { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 4px; }
+.mod-estado small { font: 400 .78rem var(--f-mono); color: var(--tenue); }
+.mod-medidor { width: 120px; height: 6px; background: var(--superficie-2); }
+.mod-medidor span { display: block; height: 100%; background: var(--acento); }
+
+/* ---------- Práctica, cómo estudiar, otras guías ---------- */
+.practica, .como, .otras { margin-top: var(--e-8); }
+.inicio > section > h2 { margin: 0 0 var(--e-4); font: 800 var(--t-2)/1.1 var(--f-titulo); letter-spacing: -.02em; }
+.practica ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--linea); }
+@media (min-width: 640px) { .practica ul { grid-template-columns: 1fr 1fr; column-gap: var(--e-6); } }
+@media (min-width: 1100px) { .practica ul { grid-template-columns: repeat(3, 1fr); } }
+.practica a { display: flex; gap: 14px; padding: 14px 2px; border-bottom: 1px solid var(--linea); color: var(--tinta-2); text-decoration: none; font-size: .92rem; line-height: 1.45; }
+.practica a svg { flex: none; color: var(--acento); margin-top: 2px; }
+.practica a b { display: block; color: var(--tinta); font-size: 1rem; }
+.practica a:hover b { color: var(--acento); }
+.como ol { max-width: 64ch; padding-left: 1.3em; }
+.como li { margin: 8px 0; }
+.como li::marker { font-family: var(--f-mono); color: var(--tenue); }
+.atajos { color: var(--tenue); font-size: .9rem; }
+.repo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--e-4); margin-bottom: var(--e-7); padding: var(--e-5); background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--r-3); }
+.repo h2 { margin: 0 0 4px; font: 700 var(--t-1)/1.2 var(--f-titulo); }
+.repo p { margin: 0; color: var(--tinta-2); font-size: .95rem; }
+.otras h3 { margin: var(--e-5) 0 var(--e-2); font: 600 1rem var(--f-titulo); color: var(--tenue); }
+.guias { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 10px; }
+.guias li { display: flex; flex-direction: column; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--r-2); }
+.guias li > a:first-child { flex: 1; display: grid; gap: 4px; padding: 14px 16px 10px; color: var(--tinta); text-decoration: none; }
+.guias li > a:first-child:hover b { color: var(--acento); }
+.guias span { font-size: .86rem; color: var(--tenue); }
+.guia-repo { display: flex; align-items: center; min-height: 44px; padding: 4px 16px; border-top: 1px dashed var(--linea); font: 500 .82rem var(--f-mono); text-decoration: none; }
+.guia-repo:hover { text-decoration: underline; }
+
+/* ---------- Laboratorios juntos ---------- */
+.labs-page { max-width: 52rem; }
+.labs-de { margin: var(--e-6) 0 -1.2em !important; font-size: .86rem; color: var(--tenue); }
+
